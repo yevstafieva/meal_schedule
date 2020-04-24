@@ -1,11 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
 import './App.css';
+
+import Main from './components/Main';
+
+const store = ConfigureStore();
 
 function App() {
   return (
     <div className="App">
-      App
+      <Main />
     </div>
   );
 }
