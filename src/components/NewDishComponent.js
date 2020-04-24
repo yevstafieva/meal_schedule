@@ -31,21 +31,20 @@ class NewDish extends Component {
 
     handleChangeDropdownDish = (e) => {
         const value = e.target.value;
-        console.log(e.target.value)
         this.setState({timeOfDay: value})
-        console.log(this.state)
     }
 
-    handleSubmitDish = () => {
-
+    handleSubmitDish = (e) => {
+        e.preventDefault();
+        this.props.onDishAdd({timeOfDay: this.state.timeOfDay, dish: e.target.elements.inputDish.value})
     }
 
     render () {
       return (
-        <Form>
+        <Form onSubmit={this.handleSubmitDish}>
             <InputGroupButtonDropdown isOpen={this.state.dropdownDishOpen} toggle={this.toggleDropdownDish} addonType="prepend">
                 <DropdownToggle id="timeOfDay" caret>
-                    {(!this.state.dropdownDishOpen &&  !this.state.timeOfDay) ? "Choose time of day" : this.state.timeOfDay}
+                    {(this.state.dropdownDishOpen  || !this.state.timeOfDay) ? "Choose time of day" : this.state.timeOfDay}
                 </DropdownToggle>
                 <DropdownMenu>
                     <DropdownItem onClick={this.handleChangeDropdownDish} value="Breakfast">Breakfast</DropdownItem>
@@ -53,8 +52,8 @@ class NewDish extends Component {
                     <DropdownItem onClick={this.handleChangeDropdownDish} value="Dinner">Dinner</DropdownItem>
                 </DropdownMenu>
             </InputGroupButtonDropdown>
-            <Input placeholder="Enter a dish"/>
-            <Button type="submit" onSubmit={this.handleSubmitDish}>Schedule</Button>
+            <Input id="inputDish"placeholder="Enter a dish"/>
+            <Button type="submit" >Schedule</Button>
             
         </Form>
       )
@@ -63,7 +62,7 @@ class NewDish extends Component {
 
   const mapDispatchToProps = dispatch => {
     return {
-        onEstimateAccommodation: (newDish) => dispatch(addDish (newDish))
+        onDishAdd: (newDish) => dispatch(addDish (newDish))
       }
     }
 

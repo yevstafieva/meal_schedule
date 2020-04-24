@@ -3,6 +3,7 @@ import {
     Container,
     } from 'reactstrap';
 import NewDish from './NewDishComponent';
+import DishesList from './DishesListComponent'
 
 class Main extends Component {
     render () {
@@ -10,6 +11,7 @@ class Main extends Component {
         <Container>
             <h1 className="text-center">Meal Schedule</h1>
             <div>Your menu is...</div>
+            <DishesList />
             <NewDish />
         </Container>
       )
