@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { 
+    Container,
+    } from 'reactstrap';
+import NewDish from './NewDishComponent';
 
 class Main extends Component {
     render () {
       return (
-        <React.Fragment>
-           <div>Main</div>
-        </React.Fragment>
+        <Container>
+            <h1 className="text-center">Meal Schedule</h1>
+            <div>Your menu is...</div>
+            <NewDish />
+        </Container>
       )
     }
   }
