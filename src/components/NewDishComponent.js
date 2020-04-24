@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { 
     Form,
     FormGroup,
@@ -10,6 +11,7 @@ import {
     DropdownItem,
     Button
 } from 'reactstrap';
+import {addDish} from '../actions';
 
 class NewDish extends Component {
     constructor (props) {
@@ -35,13 +37,13 @@ class NewDish extends Component {
     }
 
     handleSubmitDish = () => {
-        
+
     }
 
     render () {
       return (
         <Form>
-            <InputGroupButtonDropdown isOpen={this.state.dropdownDishOpen} toggle={this.toggleDropdownDish}>
+            <InputGroupButtonDropdown isOpen={this.state.dropdownDishOpen} toggle={this.toggleDropdownDish} addonType="prepend">
                 <DropdownToggle id="timeOfDay" caret>
                     {(!this.state.dropdownDishOpen &&  !this.state.timeOfDay) ? "Choose time of day" : this.state.timeOfDay}
                 </DropdownToggle>
@@ -58,4 +60,11 @@ class NewDish extends Component {
       )
     }
   }
-  export default NewDish;
+
+  const mapDispatchToProps = dispatch => {
+    return {
+        onEstimateAccommodation: (newDish) => dispatch(addDish (newDish))
+      }
+    }
+
+  export default connect(null, mapDispatchToProps)(NewDish);

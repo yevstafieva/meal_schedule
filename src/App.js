@@ -9,9 +9,11 @@ const store = ConfigureStore();
 
 function App() {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Main />
+      </div>
+    </Provider>
   );
 }
 
